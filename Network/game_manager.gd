@@ -1,6 +1,6 @@
 extends Node
 
-const MAIN_MENU_SCENE: String = "res://assets/models/start_menu.tscn"
+const MAIN_MENU_SCENE: String = "res://world_root.tscn"
 
 # Stores peer_id: Player node reference
 var registered_players: Dictionary = {}
@@ -40,7 +40,7 @@ func on_player_death(peer_id: int) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func client_return_to_main_menu() -> void:
 	print("[GameManager] Returning to main menu. Cleaning up active UI...")
-	
+	await get_tree().create_timer(5.0).timeout
 	# 1. Force-free any active death screen instances
 	var current_scene = get_tree().current_scene
 	if current_scene:
@@ -60,7 +60,7 @@ func client_return_to_main_menu() -> void:
 
 func _teardown_network() -> void:
 	# Wait 1.0 seconds so clients have time to process the scene change command
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(5.0).timeout
 	
 	if multiplayer.multiplayer_peer:
 		multiplayer.multiplayer_peer.close()

@@ -135,8 +135,6 @@ var gravity = 19.6
 
 var texture = TextureRect
 
-const PortalThrow: PackedScene = preload("res://FPSController/WeaponsManagement/Weapons/portalGunz/throw_portal_gun.tscn")
-
 @onready var cam := $CameraHolder/Camera3D
 # this will be modifed by the upgrades system to ensure that camera is static whilst
 # you pick upgrades.
@@ -400,9 +398,6 @@ func _physics_process(delta):
 	#if is_grappling:
 		#process_grapple(delta)
 
-	if Input.is_action_just_pressed(throw_action):
-		throw_weapon()
-
 	# EMOTE WHEEL
 	var emote = $HUD/SelectionWheel.close()
 	if Input.is_action_just_pressed("emote"):
@@ -510,18 +505,6 @@ func gravity_apply(delta):
 	#is_grappling = false
 	#velocity *= 1.2
 
-func throw_weapon():
-	print("func_weapon called")
-	request_spawn_projectile.rpc_id(1, global_position)
-
-@rpc("any_peer", "reliable")
-func request_spawn_projectile(spawn_position: Vector2):
-	if multiplayer.is_server():
-		print("Server: Spawning weapon at ", spawn_position)
-		var PortalgunIns = PortalThrow.instantiate()
-		PortalgunIns.global_position = spawn_position
-		if has_node("Throw_portal_gun"):
-			get_node("Throw_portal_gun").add_child(PortalgunIns)
 
 @rpc("call_local")
 func play_shoot_effects():

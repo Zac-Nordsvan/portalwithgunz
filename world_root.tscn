@@ -4,14 +4,12 @@
 [ext_resource type="Script" uid="uid://becawo6agqcir" path="res://assets/AssetCode/procedural_generator.gd" id="2_m82b1"]
 [ext_resource type="Script" uid="uid://bi0pamcrbsvyv" path="res://Network/ai_director.gd" id="3_d8pbq"]
 [ext_resource type="Script" uid="uid://dkwcsqg2yfq6v" path="res://assets/AssetCode/player_spawner.gd" id="4_mtm5c"]
-[ext_resource type="Texture2D" uid="uid://by2wglgj47twe" path="res://assets/images/qwantani_night_puresky_4k.exr" id="5_8dww3"]
 [ext_resource type="PackedScene" uid="uid://dyhdh556qmjip" path="res://loading_screen.tscn" id="5_bpw3s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8dww3"]
 sky_top_color = Color(0, 0, 0, 1)
 sky_horizon_color = Color(0.12156863, 0.003921569, 0.05490196, 1)
 sky_energy_multiplier = 0.6
-sky_cover = ExtResource("5_8dww3")
 sky_cover_modulate = Color(0.44313726, 0.1254902, 0, 1)
 ground_bottom_color = Color(0.23921569, 0, 0, 1)
 ground_horizon_color = Color(0.50980395, 0, 0.12941177, 1)
